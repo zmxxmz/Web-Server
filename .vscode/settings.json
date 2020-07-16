@@ -1,0 +1,21 @@
+{
+    "files.associations": {
+        "exception": "cpp",
+        "*.tcc": "cpp",
+        "fstream": "cpp",
+        "iosfwd": "cpp",
+        "istream": "cpp",
+        "limits": "cpp",
+        "shared_mutex": "cpp",
+        "sstream": "cpp",
+        "streambuf": "cpp",
+        "cstring": "cpp",
+        "unordered_map": "cpp",
+        "numeric": "cpp",
+        "ostream": "cpp",
+        "regex": "c",
+        "memory_resource": "cpp",
+        "new": "cpp",
+        "mutex": "cpp"
+    }
+}
