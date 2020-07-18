@@ -55,16 +55,32 @@ public:
     //解析http请求的从状态机
     enum LINE_STATUS
     {
+        //完整读取一行
         LINE_OK=0,
+        //所读取的格式不符合规则
         LINE_BAD,
+        //未完整读取一行
         LINE_OPEN
     };
     //服务器处理http请求的可能结果
     enum HTTP_CODE
     {
-        NO_REQUEST,GET_REQUEST,BAD_REQUEST,
-        NO_RESOURCE,FORBIDDEN_REQUEST,FILE_REQUEST,
-        INTERNAL_ERROR,CLOSEND_CONNECTION
+        //未接受完全的http请求
+        NO_REQUEST,
+        //接受完全的http请求
+        GET_REQUEST,
+        //接受的http请求有语法错误
+        BAD_REQUEST,
+        //没有对应文件资源
+        NO_RESOURCE,
+        //没有读权限
+        FORBIDDEN_REQUEST,
+        //文件请求
+        FILE_REQUEST,
+        //内部错误
+        INTERNAL_ERROR,
+        //关闭连接（保留）
+        CLOSEND_CONNECTION
     };
 public:
     static int m_epollfd;

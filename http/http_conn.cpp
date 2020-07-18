@@ -9,7 +9,7 @@ const char* error_404_form="The requested file was not found on this server.\n";
 const char* error_500_title="Internal Error";
 const char* error_500_form="There was an unusual problem serving the requested file.\n";
 
-const char* doc_root="/home/zmx/Web-Server/root";   
+const char* doc_root="/home/zmx/web-server/root";   
 //因为后面都是采用epoll io复用，socket都设置成非阻塞的 
 string match[]={"judge.html","log.html","logError.html","register.html","registerError.html"};
 
@@ -233,7 +233,15 @@ bool http_conn::process_write(HTTP_CODE ret)
     }
     case BAD_REQUEST:
     {
-        add_status_line(404, error_404_title);
+        add_status_line(400, error_400_title);
+        add_headers(strlen(error_400_form));
+        if (!add_content(error_400_form))
+            return false;
+        break;
+    }
+    case NO_RESOURCE:
+    {
+        add_status_line(400, error_404_title);
         add_headers(strlen(error_404_form));
         if (!add_content(error_404_form))
             return false;
@@ -484,7 +492,7 @@ http_conn::HTTP_CODE http_conn::parse_headers(char*text)
          text+=strspn(text," ");
         m_linger=true;
     }
-    else{
+    else{   
     }
     return NO_REQUEST;
 }

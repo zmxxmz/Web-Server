@@ -26,7 +26,7 @@ private:
     //停止？
     bool m_stop;
 public:
-    threadpool(int thread_number=8,int max_requests=1000);
+    threadpool(int thread_number=1,int max_requests=1000);
     ~threadpool();
     bool apend(T* requst);
 private:
