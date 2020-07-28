@@ -111,11 +111,11 @@ void epoll_events::process()
             #endif
             #ifdef LT
                 int connfd=accept(listenfd,(struct sockaddr*)&client_address,&client_addrlength);
-                if(connfd<0)break;
+                if(connfd<0)return;
                 if(http_conn::m_user_count>=MAX_FD) 
                 {
                     show_error(connfd,"Internal server busy");
-                    break;
+                    return;
                 }
                 /*创建定时器，设置其回调函数与超时时间，然后绑定定时器与用户数据，最后将定时器添加到链表timer_lst中*/
                 util_timer*timer=new util_timer;
